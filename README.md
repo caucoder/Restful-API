@@ -68,6 +68,40 @@
 
 
 
+## [`lesson4 List as Resource`](https://github.com/caucoder/Restful-API/tree/lesson4)
+
+1. List返回的xml形式
+    ```java
+        @GET
+        @Produces(MediaType.APPLICATION_XML)
+        public List<Alien> getAlien(){
+            Alien alien1  = new Alien();
+            alien1.setName("Q10Viking");
+            alien1.setPoints(95);
+
+
+            Alien alien2  = new Alien();
+            alien2.setName("huangzhuangzhuang");
+            alien2.setPoints(100);
+
+            List<Alien> aliens = Arrays.asList(alien1,alien2);
+
+            return aliens;
+        }
+
+        /*
+        <aliens>
+            <alien>
+                <name>Q10Viking</name>
+                <points>95</points>
+            </alien>
+            <alien>
+                <name>huangzhuangzhuang</name>
+                <points>100</points>
+            </alien>
+        </aliens>
+        */
+    ```
 
 
 
