@@ -24,6 +24,55 @@
 
 
 
+## [`lesson3 How to create a Resource Class`](https://github.com/caucoder/Restful-API/tree/lesson3)
+
+```
+├── Alien.java     
+├── AlienResources.java   
+└── MyResource.java
+```
+1. lienResources.java 作为访问的接口,@Path,@GET,@Produces
+    ```java
+    @Path("aliens")
+    public class AlienResources {
+
+        @GET
+        @Produces(MediaType.APPLICATION_XML)
+        public Alien getAlien(){
+            Alien alien  = new Alien();
+            alien.setName("Q10Viking");
+            alien.setPoints(95);
+            return alien;
+        }
+        
+    }
+    ```
+2. 对象Alien.java，需要转化为xml文件，@XmlRootElement
+    ```java
+        @XmlRootElement
+        public class Alien {
+
+            private String name;
+            private int points;
+            //...
+        }
+    ```
+3. 访问 http://localhost:8080/demorest/webapi/aliens
+    ```xml
+        <alien>
+            <name>Q10Viking</name>
+            <points>95</points>
+        </alien>
+    ```
+
+
+
+
+
+
+
+
+
 
 ## Import Notes
 
@@ -31,3 +80,10 @@
     ```
     mvn clean package
     ```
+
+
+## 插件
+
+1. Java Code Generators
+2. Maven for Java
+3. Tomcat for Java
