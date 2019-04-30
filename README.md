@@ -106,6 +106,14 @@
 
 
 
+## [`lesson5 Mock repository`](https://github.com/caucoder/Restful-API/tree/lesson5)
+
+1. 创建AlienRepository.java
+1. java8使用lambda遇到问题，[Lambda expressions are allowed only at source level 1.8 or above](https://github.com/redhat-developer/vscode-java/issues/328),看pom.xml
+
+
+
+
 
 
 ## Import Notes
