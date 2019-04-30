@@ -184,6 +184,26 @@
     </aliens>
     ```
 
+## [`lesson9 Mysql Repository`](https://github.com/caucoder/Restful-API/tree/lesson9)
+
+1. 使用mysql Workbench创建数据库alien
+    ```sql
+        create database restdb;
+        use restdb;
+        create table alien(id int,name varchar(20),points int);
+        select * from alien;
+    ```
+2. 在pom.xml中加入jdbc-mysql驱动
+    ```xml
+    <!-- jdbc-mysql-connecter -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.15</version>
+    </dependency>
+    ```
+3. 使用java中的Statement,PreparedStatement,Connection,DriverManager,ResultSet,进行数据查询
+4. 用postman形式测试观察
 
 
 

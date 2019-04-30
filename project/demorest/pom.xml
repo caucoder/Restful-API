@@ -65,6 +65,12 @@
             <artifactId>jersey-media-json-binding</artifactId>
         </dependency>
        
+       <!-- jdbc-mysql-connecter -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.15</version>
+        </dependency>
 
     </dependencies>
     <properties>

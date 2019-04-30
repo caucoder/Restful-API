@@ -1,5 +1,6 @@
 package org.q10viking;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,42 +9,72 @@ import java.util.List;
  */
 public class AlienRepository {
 
-    List<Alien> aliens;
+    Connection con = null;
     public AlienRepository() {
-        System.out.println("creating... AlienRepository");
-        aliens = new ArrayList<>();
-        Alien alien1  = new Alien();
-        alien1.setId(1);
-        alien1.setName("Q10Viking");
-        alien1.setPoints(95);
-
-
-        Alien alien2  = new Alien();
-        alien2.setId(2);
-        alien2.setName("huangzhuangzhuang");
-        alien2.setPoints(100);
-
-        aliens.add(alien1);
-        aliens.add(alien2);
+        String url = "jdbc:mysql://localhost:3306/restdb";
+        String username = "root";
+        String password = "root";
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, username, password);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
 
     public List<Alien> getAliens(){
-        return this.aliens;
+        List<Alien> aliens = new ArrayList<>();
+        String sql = "select * from alien";
+        try {
+            Statement st = con.createStatement();
+            ResultSet rt = st.executeQuery(sql);
+            while(rt.next()){
+                Alien a = new Alien();
+                a.setId(rt.getInt(1));
+                a.setName(rt.getString(2));
+                a.setPoints(rt.getInt(3));
+                aliens.add(a);
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        System.out.println("查询所有信息");
+        return aliens;
     }
 
     public Alien getAlienById(int id){
-        System.out.println("find elem by id");
-        return aliens.stream()
-                    .filter(x -> x.getId() == id)
-                    .findAny()
-                    .orElse(null);
+        Alien alien = new Alien();
+        String sql = "select * from alien where id = "+id;
+        try {
+            Statement st = con.createStatement();
+            ResultSet rt = st.executeQuery(sql);
+            if(rt.next()){
+                alien.setId(rt.getInt(1));
+                alien.setName(rt.getString(2));
+                alien.setPoints(rt.getInt(3)); 
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        System.out.println("根据id查询");
+        return alien;
     }
 
 
 	public void createAlien(Alien alien) {
-        this.aliens.add(alien);
-        aliens.forEach(System.out::println);
+        String sql = "insert into alien value(?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, alien.getId());
+            st.setString(2, alien.getName());
+            st.setInt(3, alien.getPoints());
+            st.executeUpdate();
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        System.out.println("添加成功");
+
 	}
     
 }
