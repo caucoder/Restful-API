@@ -109,8 +109,26 @@
 ## [`lesson5 Mock repository`](https://github.com/caucoder/Restful-API/tree/lesson5)
 
 1. 创建AlienRepository.java
-1. java8使用lambda遇到问题，[Lambda expressions are allowed only at source level 1.8 or above](https://github.com/redhat-developer/vscode-java/issues/328),看pom.xml
+2. java8使用lambda遇到问题，[Lambda expressions are allowed only at source level 1.8 or above](https://github.com/redhat-developer/vscode-java/issues/328),看pom.xml
+3. [Java 8 Streams filter examples](https://www.mkyong.com/java8/java-8-streams-filter-examples/)
 
+
+## [`lesson6 Send a Post Request`](https://github.com/caucoder/Restful-API/tree/lesson6)
+
+
+1. 使用postman软件提交post请求到 http://localhost:8080/demorest/webapi/aliens/addAlien 其中 Headers信息是 Content-Type=application/xml,body是
+    ```xml
+        <alien>
+            <id>3</id>
+            <name>caucoder</name>
+            <points>95</points>
+        </alien>
+    ```
+2. AlienResources.java的属性声明为static,final,在post后，能够get到数据
+    ```java
+        //避免每次请求都重新创建AlienRepository
+        static final AlienRepository alienRepo = new AlienRepository();
+    ```
 
 
 

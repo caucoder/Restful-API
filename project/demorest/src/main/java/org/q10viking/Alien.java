@@ -38,4 +38,15 @@ public class Alien {
     }
 
 
+    @Override
+    public String toString() {
+        return "{" +
+            " name='" + getName() + "'" +
+            ", points='" + getPoints() + "'" +
+            ", id='" + getId() + "'" +
+            "}";
+    }
+
+
+
 }

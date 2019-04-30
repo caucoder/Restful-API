@@ -10,7 +10,7 @@ public class AlienRepository {
 
     List<Alien> aliens;
     public AlienRepository() {
-
+        System.out.println("creating... AlienRepository");
         aliens = new ArrayList<>();
         Alien alien1  = new Alien();
         alien1.setId(1);
@@ -38,5 +38,11 @@ public class AlienRepository {
                     .findAny()
                     .orElse(null);
     }
+
+
+	public void createAlien(Alien alien) {
+        this.aliens.add(alien);
+        aliens.forEach(System.out::println);
+	}
     
 }
