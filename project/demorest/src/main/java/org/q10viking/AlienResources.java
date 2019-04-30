@@ -2,6 +2,7 @@ package org.q10viking;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -29,6 +30,7 @@ public class AlienResources {
     @GET
     @Path("alien/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Alien getAlien(@PathParam("id") int id){
         
         return alienRepo.getAlienById(id);

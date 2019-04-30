@@ -207,6 +207,21 @@
 
 
 
+## [`lesson10 Consumes JSON and XML`](https://github.com/caucoder/Restful-API/tree/lesson10)
+
+
+1. @Consumes指定服务器接收的数据类型，Alien类仍然是使用@XmlRootElement
+```java
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Alien getAlien(@PathParam("id") int id){
+        
+        return alienRepo.getAlienById(id);
+    }
+```
+
+-----------
+
+
 
 
 
