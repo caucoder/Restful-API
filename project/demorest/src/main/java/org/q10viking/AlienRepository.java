@@ -76,5 +76,20 @@ public class AlienRepository {
         System.out.println("添加成功");
 
 	}
+
+
+	public void updateAlien(Alien alien) {
+        String sql = "update alien set name=?,points=? where id=?";
+        try {
+            PreparedStatement pt = con.prepareStatement(sql);
+            pt.setString(1, alien.getName());
+            pt.setInt(2, alien.getPoints());
+            pt.setInt(3, alien.getId());
+            pt.executeUpdate();
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+       
+	}
     
 }

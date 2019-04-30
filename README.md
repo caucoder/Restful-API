@@ -219,6 +219,33 @@
     }
 ```
 
+
+
+
+
+## [`lesson11 Update Resource using PUT method`](https://github.com/caucoder/Restful-API/tree/lesson11)
+
+
+1. @PUT注解用于http put方法，更新数据，数据与post一样存在与body当中
+    ```java
+        @PUT
+        @Path("updateAlien")
+        @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+        public void updateAlien(Alien alien){
+            System.out.println(alien);
+            //如果不存在，则添加
+            if(alienRepo.getAlienById(alien.getId()).getId()==0){
+                System.out.println("该对象不能更新，添加"+alien);
+                alienRepo.createAlien(alien);
+            }else{
+                alienRepo.updateAlien(alien);
+                System.out.println("更新成功。");
+            }
+        }
+    ```
+
+
+
 -----------
 
 
