@@ -144,6 +144,47 @@
     ```
 
 
+## [`lesson8 Working with JSON`](https://github.com/caucoder/Restful-API/tree/lesson8)
+
+1. maven pom.xml中，支持json
+    ```xml
+        <!-- uncomment this to get JSON support -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-binding</artifactId>
+        </dependency>
+    ```
+2. @Produces设置返回的类型MediaType.APPLICATION_JSON,注意可以设置多个类型，但是需要用大括号{},根据客户端的发送的头部信息 Accept： "application/json" 还是 "application/xml"，服务器决定返回什么类型
+    ```json
+    [
+        {
+            "id": 1,
+            "name": "Q10Viking",
+            "points": 95
+        },
+        {
+            "id": 2,
+            "name": "huangzhuangzhuang",
+            "points": 100
+        }
+    ]
+    ```
+    ```xml
+    <aliens>
+    <alien>
+        <id>1</id>
+        <name>Q10Viking</name>
+        <points>95</points>
+    </alien>
+    <alien>
+        <id>2</id>
+        <name>huangzhuangzhuang</name>
+        <points>100</points>
+    </alien>
+    </aliens>
+    ```
+
+
 
 
 

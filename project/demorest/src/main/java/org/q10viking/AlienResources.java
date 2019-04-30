@@ -1,6 +1,5 @@
 package org.q10viking;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -20,7 +19,7 @@ public class AlienResources {
     static final AlienRepository alienRepo = new AlienRepository();
     
     @GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public List<Alien> getAlien(){
         
         return alienRepo.getAliens();
@@ -29,7 +28,7 @@ public class AlienResources {
 
     @GET
     @Path("alien/{id}")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Alien getAlien(@PathParam("id") int id){
         
         return alienRepo.getAlienById(id);
@@ -38,6 +37,7 @@ public class AlienResources {
 
     @POST
     @Path("addAlien")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Alien addAlien(Alien alien){
         System.out.println(alien);
         alienRepo.createAlien(alien);
