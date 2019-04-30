@@ -130,6 +130,21 @@
         static final AlienRepository alienRepo = new AlienRepository();
     ```
 
+## [`lesson7 PathParam`](https://github.com/caucoder/Restful-API/tree/lesson7)
+
+1. 将client端的get请求参数，提取绑定到函数参数上。@PathParam
+    ```java
+        @GET
+        @Path("alien/{id}")
+        @Produces(MediaType.APPLICATION_XML)
+        public Alien getAlien(@PathParam("id") int id){
+            
+            return alienRepo.getAlienById(id);
+        }
+    ```
+
+
+
 
 
 
@@ -140,6 +155,7 @@
     ```
     mvn clean package
     ```
+2. post请求直接绑定到对象上，get请求通过@PathParam注解绑定参数
 
 
 ## 插件

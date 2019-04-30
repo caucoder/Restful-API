@@ -33,6 +33,7 @@ public class AlienRepository {
     }
 
     public Alien getAlienById(int id){
+        System.out.println("find elem by id");
         return aliens.stream()
                     .filter(x -> x.getId() == id)
                     .findAny()
