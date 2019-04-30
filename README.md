@@ -250,6 +250,75 @@
 
 
 
+## [`lesson12 Delete Resource`](https://github.com/caucoder/Restful-API/tree/lesson12)
+
+1. @DELETE
+```java
+    @DELETE
+    @Path("alien/{id}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Alien deleteAlien(@PathParam("id") int id){
+        
+        Alien a = alienRepo.getAlienById(id);
+        //如果id=0，表示是空值
+        if(a.getId() != 0)  
+            alienRepo.deleteAlienById(id);
+        return a;
+    }
+```
+
+
+**use mysql workbancg error**
+> You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option ....
+
+[fix the problem](https://stackoverflow.com/questions/11448068/mysql-error-code-1175-during-update-in-mysql-workbench)
+```
+SET SQL_SAFE_UPDATES = 0;
+```
+
+
+-----------
+
+
+
+
+## 小结
+
+
+1. 通过使用JAR-RS实现的Restful api,进行实验。通过postman测试http的get,post,put,delete方法与后台数据库mysql的select,insert,update,delete结合使用，数据在server端与client端之间的通信。
+2. 项目在vscode中成型，运行项目安装好下面的插件，使用**mvn clear package**命令生成war文件，然后部署到tomcat即可
+3. postman测试用到的链接
+```java
+//获取全部数据
+GET http://localhost:8080/demorest/webapi/aliens   
+
+//根据id获取数据
+GET http://localhost:8080/demorest/webapi/aliens/alien/5
+
+//删除数据
+DELETE http://localhost:8080/demorest/webapi/aliens/alien/4
+
+//提交数据，数据在body
+POST http://localhost:8080/demorest/webapi/aliens/addAlien
+
+//更新数据,数据在body
+PUT http://localhost:8080/demorest/webapi/aliens/updateAlien
+
+```
+4. 代码功能
+```java
+├── Alien.java     POJO对象
+├── AlienRepository.java  与数据库链接
+├── AlienResources.java   restful api数据交互
+└── MyResource.java  项目初始化自带的测试用例
+```
+5. 关键信息
+    1. java POJO对象:@XmlRootElement
+    2. 返回：@Produces
+    3. 接收：@Consumes
+    4. 类型：MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML
+
 
 
 ## Import Notes

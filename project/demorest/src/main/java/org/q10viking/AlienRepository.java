@@ -91,5 +91,17 @@ public class AlienRepository {
         }
        
 	}
+
+
+	public void deleteAlienById(int id) {
+        String sql = "delete from alien where id=?";
+        try {
+            PreparedStatement pt = con.prepareStatement(sql);
+            pt.setInt(1, id);
+            pt.executeUpdate();
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+	}
     
 }

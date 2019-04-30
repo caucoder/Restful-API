@@ -3,6 +3,7 @@ package org.q10viking;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -66,9 +67,16 @@ public class AlienResources {
 
 
 
-
-
-
-
-
+    @DELETE
+    @Path("alien/{id}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Alien deleteAlien(@PathParam("id") int id){
+        
+        Alien a = alienRepo.getAlienById(id);
+        //如果id=0，表示是空值
+        if(a.getId() != 0)  
+            alienRepo.deleteAlienById(id);
+        return a;
+    }
 }
